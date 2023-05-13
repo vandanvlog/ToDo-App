@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listview_one/constants/color.dart';
+import 'package:listview_one/delete.dart';
 import 'package:listview_one/model/todo.dart';
 
 class TodoItem extends StatelessWidget {
@@ -46,9 +47,17 @@ class TodoItem extends StatelessWidget {
             color: Colors.white,
             iconSize: 18,
             icon: const Icon(Icons.delete),
-            onPressed: () {
+            onPressed: () async {
               //print('delete item');
-              onDeleteItem(todo.id);
+              bool? deleteConfirmed =
+                  await DeleteDilogBox.showDeleteDilog(context);
+              if (deleteConfirmed == true) {
+                //delete operation
+                onDeleteItem(todo.id);
+
+                // Dismiss the dialog box
+                Navigator.of(context).pop();
+              }
             },
           ),
         ),

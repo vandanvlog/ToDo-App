@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listview_one/delete.dart';
 import 'package:listview_one/model/todo.dart';
 import '../constants/color.dart';
 import '../widget/todo_item.dart';
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
                       Container(
                         margin: const EdgeInsets.only(top: 50, bottom: 20),
                         child: const Text(
-                          ' All ToooDoo',
+                          ' All ToDo',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.w500),
                         ),
@@ -112,6 +113,8 @@ class _HomeState extends State<Home> {
   }
 
   void _deleteToDoItem(String id) {
+    DeleteDilogBox.showDeleteDilog(context);
+
     setState(() {
       todosList.removeWhere((item) => item.id == id);
     });
